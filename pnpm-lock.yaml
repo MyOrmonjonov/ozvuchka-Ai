@@ -39,6 +39,9 @@ importers:
         specifier: ^6.2.3
         version: 6.4.5(@types/node@22.20.5)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.15)
     devDependencies:
+      '@rollup/rollup-linux-x64-gnu':
+        specifier: 4.67.5
+        version: 4.67.5
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.25
@@ -618,7 +621,6 @@ packages:
     resolution: {integrity: sha512-HmEfNh5Cdd/NHxgqwMzKnjlvicQQA+D+w+vQXDJSV0x/aHiQSjVwh1Th5RoA7QsMieIaxibt/5iJq68BraTSUg==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.67.5':
     resolution: {integrity: sha512-NfmALpbe009nYzZ2QqlSW6nzbGddXpqk3nwualrIr+4QflQCTGMzt3QKK20yARiAnSV9fJdM5WNwIYUf31x3uA==}
@@ -1898,8 +1900,7 @@ snapshots:
   '@rollup/rollup-linux-s390x-gnu@4.67.5':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.67.5':
-    optional: true
+  '@rollup/rollup-linux-x64-gnu@4.67.5': {}
 
   '@rollup/rollup-linux-x64-musl@4.67.5':
     optional: true
