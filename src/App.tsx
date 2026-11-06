@@ -9,6 +9,22 @@ import { AlertTriangle, X } from 'lucide-react';
 
 const STORAGE_KEY = 'ozbek_ovoz_history_v1';
 
+async function readApiResponse(res: Response): Promise<Record<string, any>> {
+  const raw = await res.text();
+  if (!raw.trim()) return {};
+
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    throw new Error(
+      res.ok
+        ? 'Serverdan kutilmagan javob qaytdi'
+        : `Server xatosi (${res.status}): ${raw.slice(0, 180)}`
+    );
+  }
+}
+
 export default function App() {
   const [text, setText] = useState<string>(
     "Assalomu alaykum! O'zbek ovoz sun'iy intellekt xizmatiga xush kelibsiz. Bugun sizga qanday yordam bera olaman?"
@@ -63,7 +79,7 @@ export default function App() {
         body: JSON.stringify({ text }),
       });
 
-      const data = await res.json();
+      const data = await readApiResponse(res);
 
       if (!res.ok) {
         throw new Error(data.error || "Matnni tahrirlashda xatolik yuz berdi");
@@ -97,7 +113,7 @@ export default function App() {
         }),
       });
 
-      const data = await res.json();
+      const data = await readApiResponse(res);
 
       if (!res.ok) {
         throw new Error(data.error || "Ovoz sintez qilishda xatolik yuz berdi");
